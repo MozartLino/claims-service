@@ -1,0 +1,33 @@
+{ 
+    "app":"npx ts-node iac/app.ts",
+    "watch": {
+    "include": [
+      "**/*"
+    ],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "**/*.d.ts",
+      "tsconfig.json",
+      "package*.json",
+      "yarn.lock",
+      "node_modules",
+      "test"
+    ]
+  },
+  "context": {
+    "dev": {
+      "REGION": "us-east-1",
+      "STAGE": "dev",
+      "LOG_LEVEL": "DEBUG"
+    },
+    "stg": {
+      "REGION": "us-east-1",
+      "STAGE": "stg"
+    },
+    "prod": {
+      "REGION": "us-east-1",
+      "STAGE": "prod"
+    }
+  }
+}
