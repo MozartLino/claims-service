@@ -3,12 +3,12 @@ import { createClient } from '../infrastructure/repositories/dynamodb/client';
 import { ClaimsService } from '../application';
 import { ClaimsRepository } from '../infrastructure/repositories/dynamodb/ClaimsRepository';
 import { defaultMiddleware } from './middlewares/defaultMiddyConfiguration';
-import { claimsGetByIdEventSchema, claimsIngestionEventSchema, claimsQueryEventSchema } from './utils/schemas/ClaimSchemas';
+import { claimsGetByIdEventSchema, claimsIngestionEventSchema, claimsQueryEventSchema } from './schemas/ClaimSchemas';
 import { handler as ingestionClaimsHandlerFn } from './handlers/http/ingestionClaimsHandler';
 import { handler as getClaimByIdHandlerFn } from './handlers/http/claimsGetByIdHandler';
 import { handler as listClaimsHandlerFn } from './handlers/http/listClaimsHandler';
 import { logger } from './utils/logger';
-import { ClaimsGetByIdEvent, ClaimsIngestionEvent, ClaimsListEvent } from './utils/schemas/types';
+import { ClaimsGetByIdEvent, ClaimsIngestionEvent, ClaimsListEvent } from './schemas/types';
 
 const config = configFromEnv();
 const dynamoDBClient = createClient(config);

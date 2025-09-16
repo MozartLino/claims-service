@@ -2,7 +2,7 @@ import { Logger } from '@aws-lambda-powertools/logger';
 import { APIGatewayProxyResult } from 'aws-lambda';
 import { ClaimsService } from '../../../application';
 import { handleError } from './utils/handleError';
-import { ClaimsIngestionEvent } from '../../utils/schemas/types';
+import { ClaimsIngestionEvent } from '../../schemas/types';
 import { ok } from './utils/response';
 
 export const handler =

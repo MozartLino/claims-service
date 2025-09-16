@@ -15,7 +15,7 @@ import { APIGatewayProxyResult } from 'aws-lambda';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { Logger } from '@aws-lambda-powertools/logger';
 import { MiddlewareOptions } from './type';
-import { logRequest } from '../utils/utils/logRequest';
+import { logRequest } from '../utils/logRequest';
 
 export const defaultMiddleware =
   <T>(logger: Logger) =>
