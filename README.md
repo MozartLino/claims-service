@@ -4,6 +4,10 @@
 
 This project was implemented as a take-home assignment and demonstrates end-to-end design of ingestion, validation, persistence, and querying of structured CSV data.
 
+## 📌 Decisions & Trade-offs
+
+For detailed notes on architectural decisions and trade-offs, see [DECISIONS.md](./DECISIONS.md).
+
 ---
 
 ## ✨ Features
