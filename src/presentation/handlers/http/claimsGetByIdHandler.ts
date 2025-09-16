@@ -3,7 +3,7 @@ import { APIGatewayProxyResult } from 'aws-lambda';
 import { ok } from './utils/response';
 import { ClaimsService } from '../../../application';
 import { handleError } from './utils/handleError';
-import { ClaimsGetByIdEvent } from '../../utils/schemas/types';
+import { ClaimsGetByIdEvent } from '../../schemas/types';
 import { ClaimViewModel } from '../../utils/model/ClaimViewModel';
 
 export const handler =

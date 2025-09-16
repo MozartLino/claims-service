@@ -1,4 +1,5 @@
 import { Claim } from '../../../domain';
+import { formatCurrency } from '../formatCurrency';
 
 export class ClaimViewModel {
   static fromDomain(claim: Claim) {
@@ -17,10 +18,7 @@ export class ClaimViewModel {
         second: '2-digit',
       }).format(claim.serviceDate),
       totalAmount: claim.totalAmount,
-      formattedTotalAmount: (claim.totalAmount / 100).toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }),
+      formattedTotalAmount: formatCurrency(claim.totalAmount),
       diagnosisCodes: claim.diagnosisCodes,
     };
   }

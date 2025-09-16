@@ -28,3 +28,22 @@ export const mockConfig = {
   claimsTableName: 'test-claims-table',
   claimsByMemberAndDateIndex: 'test-claims-by-member-and-date-index',
 } as const;
+
+export const mockClaim = {
+  id: 'clm-1',
+  memberId: 'mbr-1',
+  amount: 12500,
+  serviceDate: new Date('2025-01-15'),
+  description: 'Test claim',
+};
+
+export const mockClaims = [
+  mockClaim,
+  {
+    id: 'clm-2',
+    memberId: 'mbr-1',
+    amount: 2500,
+    serviceDate: new Date('2025-01-20'),
+    description: 'Test claim 2',
+  },
+];
