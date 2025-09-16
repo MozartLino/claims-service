@@ -1,8 +1,6 @@
 import { z } from 'zod';
-import { itemCreateEventSchema, itemDeleteEventSchema, itemListEventSchema, itemUpdateEventSchema } from './itemsSchemas';
+import { claimsGetByIdEventSchema, claimsIngestionEventSchema, claimsQueryEventSchema } from './ClaimSchemas';
 
-export type ItemCreateEvent = z.infer<typeof itemCreateEventSchema>;
-export type ItemUpdateEvent = z.infer<typeof itemUpdateEventSchema>;
-export type ItemDeleteEvent = z.infer<typeof itemDeleteEventSchema>;
-export type ItemGetByIdEvent = z.infer<typeof itemDeleteEventSchema>;
-export type ItemListEvent = z.infer<typeof itemListEventSchema>;
+export type ClaimsIngestionEvent = z.infer<typeof claimsIngestionEventSchema>;
+export type ClaimsGetByIdEvent = z.infer<typeof claimsGetByIdEventSchema>;
+export type ClaimsListEvent = z.infer<typeof claimsQueryEventSchema>;

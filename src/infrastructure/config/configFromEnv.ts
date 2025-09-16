@@ -9,8 +9,9 @@ const configFromEnv = (): Config => ({
   region: process.env[envVars.region] ?? 'us-east-1',
   logLevel: process.env[envVars.logLevel] ?? 'info',
   stage: (process.env[envVars.stage] as Stage) ?? 'dev',
-  serviceName: process.env[envVars.serviceName] ?? 'items-service',
-  itemsTableName: process.env[envVars.itemsTableName] ?? 'ItemsTable',
+  serviceName: process.env[envVars.serviceName] ?? 'claims-service',
+  claimsTableName: process.env[envVars.claimsTableName] ?? 'claimsTable',
+  claimsByMemberAndDateIndex: process.env[envVars.claimsByMemberAndDateIndex] ?? 'claimsByMemberAndDate',
 });
 
 export default configFromEnv;

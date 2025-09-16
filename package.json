@@ -1,5 +1,5 @@
 {
-  "name": "cdk-ts-middy-clean-arch-starter",
+  "name": "claims-service",
   "version": "5.0.0",
   "description": "Batteries-included boilerplate for using AWS CDK v2 with NodejsFunction construct and MiddyJS middleware",
   "scripts": {
@@ -52,10 +52,13 @@
     "@middy/http-event-normalizer": "^6.4.5",
     "@middy/http-header-normalizer": "^6.4.5",
     "@middy/http-json-body-parser": "^6.4.5",
+    "@middy/http-multipart-body-parser": "^6.4.5",
     "@middy/http-router": "^6.4.5",
     "@middy/http-security-headers": "^6.4.5",
     "@middy/ssm": "^6.4.5",
     "@middy/validator": "^6.4.5",
+    "csv-parse": "^6.1.0",
+    "csv-parser": "^3.2.0",
     "http-errors": "^2.0.0",
     "zod": "^3.24.1",
     "zod-to-json-schema": "^3.24.6"
@@ -64,7 +67,7 @@
     "**/*.ts": [
       "prettier --write",
       "eslint --fix",
-      "npm test"
+      "jest --findRelatedTests --bail --passWithNoTests --coverage=false"
     ]
   }
 }

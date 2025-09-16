@@ -1,13 +1,17 @@
-export interface ItemProps {
-  id: string;
-  name: string;
-  createdAt: Date;
-  version?: number;
+export interface ClaimPrimitives {
+  claimId: string;
+  memberId: string;
+  provider: string;
+  serviceDate: string;
+  totalAmount: string;
+  diagnosisCodes?: string;
 }
 
-export interface ItemPrimitives {
+export interface ClaimProps {
   id: string;
-  name: string;
-  createdAt: string;
-  version: number;
+  memberId: string;
+  provider: string;
+  serviceDate: Date;
+  totalAmount: number;
+  diagnosisCodes?: string[];
 }

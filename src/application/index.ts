@@ -1,2 +1,2 @@
-export * from './models/ItemApplicationModel';
-export * from './services/ItemService';
+export * from './models/ClaimsApplicationModel';
+export * from './services/ClaimsService';

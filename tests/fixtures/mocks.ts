@@ -3,16 +3,7 @@ import { Logger } from '@aws-lambda-powertools/logger';
 export const mockRepo = {
   save: jest.fn(),
   findById: jest.fn(),
-  update: jest.fn(),
-  delete: jest.fn(),
-};
-
-export const mockPaginationRepo = {
-  list: jest.fn(),
-};
-
-export const mockIdGenerator = {
-  generate: jest.fn().mockReturnValue('uuid-123'),
+  findByMemberAndDateRange: jest.fn(),
 };
 
 export const mockLogger = {
@@ -33,6 +24,7 @@ export const mockConfig = {
   logLevel: 'DEBUG',
   region: 'us-east-1',
   stage: 'dev',
-  serviceName: 'ItemService',
-  itemsTableName: 'ItemsTable-dev',
+  serviceName: 'ClaimsService',
+  claimsTableName: 'test-claims-table',
+  claimsByMemberAndDateIndex: 'test-claims-by-member-and-date-index',
 } as const;

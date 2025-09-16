@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import { ConflictError, InfraError, NotFoundError, ValidationError } from '../../../../domain/errors';
+import { InfraError, NotFoundError, ValidationError } from '../../../../domain/errors';
 import { DomainError } from '../../../../domain/errors/DomainError';
 
 type DomainHttpErrorDefinition = {
@@ -12,10 +12,6 @@ const domainHttpErrorMappings: DomainHttpErrorDefinition[] = [
   {
     sourceError: NotFoundError,
     factory: (msg) => createHttpError.NotFound(msg),
-  },
-  {
-    sourceError: ConflictError,
-    factory: (msg) => createHttpError.Conflict(msg),
   },
   {
     sourceError: ValidationError,

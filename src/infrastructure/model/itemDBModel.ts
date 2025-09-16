@@ -1,6 +1,8 @@
-export type ItemDBDTO = {
-  itemId: string;
-  name: string;
-  createdAt?: string;
-  version: number;
+export type ClaimDBModel = {
+  claimId: string;
+  memberId: string;
+  provider: string;
+  serviceDate: string;
+  totalAmount: number;
+  diagnosisCodes?: string[];
 };

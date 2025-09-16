@@ -76,7 +76,7 @@ describe('getConfig', () => {
         region: 'us-east-1',
         stage: 'dev',
         logLevel: 'INFO',
-        serviceName: 'items-service',
+        serviceName: 'claims-service',
       });
     });
 
@@ -113,7 +113,7 @@ describe('getConfig', () => {
       });
 
       expect(parsed.LOG_LEVEL).toBe('INFO');
-      expect(parsed.SERVICE_NAME).toBe('items-service');
+      expect(parsed.SERVICE_NAME).toBe('claims-service');
     });
   });
 });

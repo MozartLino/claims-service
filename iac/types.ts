@@ -14,9 +14,9 @@ export interface ConfigStackProps {
   serviceName: string;
 }
 
-export interface ItemsStackProps extends StackProps, ConfigStackProps {
+export interface ClaimsStackProps extends StackProps, ConfigStackProps {
   resources: {
-    itemsTable: ITable;
+    claimsTable: ITable;
   };
   serviceName: string;
 }
@@ -27,6 +27,6 @@ export interface PersistenceStackProps extends StackProps {
 
 export type CreateFunctionsInput = {
   scope: Construct;
-  resources: { itemsTable: ITable };
+  resources: { claimsTable: ITable };
   config: ConfigStackProps;
 };

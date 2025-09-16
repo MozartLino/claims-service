@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import { ConflictError, InfraError, NotFoundError, ValidationError, DomainError } from '../../../../../../src/domain/errors';
+import { InfraError, NotFoundError, ValidationError, DomainError } from '../../../../../../src/domain/errors';
 import { mapDomainErrorToHttpError } from '../../../../../../src/presentation/handlers/http/utils/mapDomainErrorToHttpError';
 
 describe('mapDomainErrorToHttpError', () => {
@@ -8,13 +8,6 @@ describe('mapDomainErrorToHttpError', () => {
     const result = mapDomainErrorToHttpError(err);
     expect(result).toBeInstanceOf(createHttpError.NotFound);
     expect(result.message).toBe('not found with id item not found');
-  });
-
-  it('should map ConflictError to HTTP 409', () => {
-    const err = new ConflictError('conflict');
-    const result = mapDomainErrorToHttpError(err);
-    expect(result).toBeInstanceOf(createHttpError.Conflict);
-    expect(result.message).toBe('conflict');
   });
 
   it('should map ValidationError to HTTP 400', () => {

@@ -1,4 +1,4 @@
-import { Item } from '../models/Item';
+import { Claim } from '../models/Claim';
 
 export interface PaginatedListParams {
   limit?: number;
@@ -6,7 +6,7 @@ export interface PaginatedListParams {
 }
 
 export interface PaginatedListResult {
-  items: Item[];
+  items: Claim[];
   cursor?: string;
 }
 

@@ -10,7 +10,7 @@ export const configSchema = z
       .string()
       .regex(/^[a-zA-Z]+-[a-zA-Z]+-\d$/, 'value for AWS Region does not match expected structure.')
       .default('us-east-1'),
-    SERVICE_NAME: z.string().optional().default('items-service'),
+    SERVICE_NAME: z.string().optional().default('claims-service'),
     STAGE: stageSchema,
     LOG_LEVEL: logLevelSchema.optional().default('INFO'),
   })

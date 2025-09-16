@@ -1,11 +1,11 @@
-import { ConflictError } from '../../../../../../src/domain';
+import { InfraError } from '../../../../../../src/domain';
 import { handleError } from '../../../../../../src/presentation/handlers/http/utils/handleError';
 import * as mapper from '../../../../../../src/presentation/handlers/http/utils/mapDomainErrorToHttpError';
 import * as responseError from '../../../../../../src/presentation/utils/errors/responseError';
 
 describe('handleError', () => {
   it('should throw mapped HTTP error when error is a DomainError', () => {
-    const domainErr = new ConflictError('conflict!');
+    const domainErr = new InfraError('error');
     const mappedError = new Error('mapped!');
 
     const spy = jest.spyOn(mapper, 'mapDomainErrorToHttpError').mockReturnValue(mappedError);

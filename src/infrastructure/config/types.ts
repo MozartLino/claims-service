@@ -9,5 +9,6 @@ export type Config = {
   logLevel: string;
   stage: Stage;
   serviceName: string;
-  itemsTableName: string;
+  claimsTableName: string;
+  claimsByMemberAndDateIndex: string;
 };

@@ -1,24 +1,24 @@
 import { App } from 'aws-cdk-lib';
 import { Template, Match } from 'aws-cdk-lib/assertions';
 import { PersistenceStack } from '../../../iac/stacks/PersistenceStack';
-import { ItemsStack } from '../../../iac/stacks/ItemsStack';
+import { ClaimsStack } from '../../../iac/stacks/ClaimsStack';
 import { mockConfig } from '../../fixtures/mocks';
 
 const createStacks = () => {
   const app = new App();
   const persistence = new PersistenceStack(app, 'TestPersistenceStack', { stage: mockConfig.stage });
 
-  const itemsStack = new ItemsStack(app, 'TestItemsStack', {
-    resources: { itemsTable: persistence.itemsTable },
+  const claimsStack = new ClaimsStack(app, 'TestClaimsStack', {
+    resources: { claimsTable: persistence.claimsTable },
     ...mockConfig,
     env: { region: 'us-east-1' },
-    stackName: 'TestItemsStack',
+    stackName: 'TestClaimsStack',
   });
 
-  return { template: Template.fromStack(itemsStack), itemsStack };
+  return { template: Template.fromStack(claimsStack), claimsStack };
 };
 
-describe('ItemsStack', () => {
+describe('ClaimsStack', () => {
   it('should create an API Gateway with the correct resources and methods', () => {
     const { template } = createStacks();
 
@@ -26,7 +26,7 @@ describe('ItemsStack', () => {
       Name: `${mockConfig.serviceName}-${mockConfig.stage}`,
     });
 
-    template.resourceCountIs('AWS::ApiGateway::Method', 8);
+    template.resourceCountIs('AWS::ApiGateway::Method', 6);
 
     template.hasResourceProperties('AWS::ApiGateway::Method', {
       HttpMethod: 'POST',
@@ -35,18 +35,28 @@ describe('ItemsStack', () => {
     template.hasResourceProperties('AWS::ApiGateway::Method', {
       HttpMethod: 'GET',
     });
-
-    template.hasResourceProperties('AWS::ApiGateway::Method', {
-      HttpMethod: 'PUT',
-    });
-
-    template.hasResourceProperties('AWS::ApiGateway::Method', {
-      HttpMethod: 'DELETE',
-    });
   });
 
   it('should output the API URL', () => {
     const { template } = createStacks();
     template.hasOutput('ApiUrl', Match.anyValue());
+  });
+
+  it('should create the Lambda functions', () => {
+    const { template } = createStacks();
+
+    template.resourceCountIs('AWS::Lambda::Function', 3);
+
+    template.hasResourceProperties('AWS::Lambda::Function', {
+      Handler: 'index.ingestionClaimsHandler',
+    });
+
+    template.hasResourceProperties('AWS::Lambda::Function', {
+      Handler: 'index.getClaimByIdHandler',
+    });
+
+    template.hasResourceProperties('AWS::Lambda::Function', {
+      Handler: 'index.listClaimsHandler',
+    });
   });
 });

@@ -2,9 +2,10 @@ import { CreateFunctionsInput } from '../types';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as lambdaNode from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as path from 'path';
+import { PersistenceStack } from '../stacks/PersistenceStack';
 
 export function createFunctions({ scope, resources, config }: CreateFunctionsInput) {
-  const { itemsTable } = resources;
+  const { claimsTable } = resources;
   const makeFn = (handler: string, overrides?: Partial<lambdaNode.NodejsFunctionProps>) =>
     new lambdaNode.NodejsFunction(scope, handler, {
       handler,
@@ -19,25 +20,20 @@ export function createFunctions({ scope, resources, config }: CreateFunctionsInp
       environment: {
         SERVICE_NAME: config.serviceName,
         STAGE: config.stage,
-        ITEMS_TABLE_NAME: itemsTable.tableName,
+        CLAIMS_TABLE_NAME: PersistenceStack.CLAIMS_TABLE_NAME,
+        GSI_INDEX_NAME: PersistenceStack.CLAIMS_BY_MEMBER_AND_DATE_INDEX,
       },
       ...overrides,
     });
 
-  const deleteItemHandler = makeFn('deleteItemHandler');
-  itemsTable.grantReadWriteData(deleteItemHandler);
+  const ingestionClaimsHandler = makeFn('ingestionClaimsHandler');
+  claimsTable.grantReadWriteData(ingestionClaimsHandler);
 
-  const createItemHandler = makeFn('createItemHandler');
-  itemsTable.grantReadWriteData(createItemHandler);
+  const getClaimByIdHandler = makeFn('getClaimByIdHandler');
+  claimsTable.grantReadData(getClaimByIdHandler);
 
-  const updateItemHandler = makeFn('updateItemHandler');
-  itemsTable.grantReadWriteData(updateItemHandler);
+  const listClaimsHandler = makeFn('listClaimsHandler');
+  claimsTable.grantReadData(listClaimsHandler);
 
-  const listItemHandler = makeFn('listItemHandler');
-  itemsTable.grantReadData(listItemHandler);
-
-  const getItemByIdHandler = makeFn('getItemByIdHandler');
-  itemsTable.grantReadData(getItemByIdHandler);
-
-  return { deleteItemHandler, createItemHandler, updateItemHandler, listItemHandler, getItemByIdHandler };
+  return { ingestionClaimsHandler, getClaimByIdHandler, listClaimsHandler };
 }

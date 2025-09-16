@@ -2,17 +2,17 @@
 import { App } from 'aws-cdk-lib';
 import { PersistenceStack } from './stacks/PersistenceStack';
 import { getConfig } from './utils/getConfig';
-import { ItemsStack } from './stacks/ItemsStack';
+import { ClaimsStack } from './stacks/ClaimsStack';
 
 const app = new App();
 const config = getConfig(app);
 
-const persistenceStack = new PersistenceStack(app, 'PersistenceStack', { stage: config.stage });
+const persistenceStack = new PersistenceStack(app, 'ClaimsPersistenceStack', { stage: config.stage });
 
-new ItemsStack(app, 'ItemsServiceStack', {
+new ClaimsStack(app, 'ClaimsServiceStack', {
   resources: {
-    itemsTable: persistenceStack.itemsTable,
+    claimsTable: persistenceStack.claimsTable,
   },
-  stackName: 'ItemService',
+  stackName: 'ClaimsService',
   ...config,
 });

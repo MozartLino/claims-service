@@ -13,16 +13,18 @@ describe('configFromEnv', () => {
     expect(config.region).toBe('us-east-1');
     expect(config.logLevel).toBe('info');
     expect(config.stage).toBe('dev');
-    expect(config.serviceName).toBe('items-service');
-    expect(config.itemsTableName).toBe('ItemsTable');
+    expect(config.serviceName).toBe('claims-service');
+    expect(config.claimsTableName).toBe('claimsTable');
+    expect(config.claimsByMemberAndDateIndex).toBe('claimsByMemberAndDate');
   });
 
   it('should return config with values from environment variables', () => {
     process.env[envVars.region] = 'CUSTOM_REGION';
     process.env[envVars.logLevel] = 'DEBUG';
     process.env[envVars.stage] = 'prod';
-    process.env[envVars.serviceName] = 'items-service';
-    process.env[envVars.itemsTableName] = 'ItemsTable';
+    process.env[envVars.serviceName] = 'claims-service';
+    process.env[envVars.claimsTableName] = 'ClaimsTable';
+    process.env[envVars.claimsByMemberAndDateIndex] = 'ClaimsByMemberAndDateIndex';
 
     const config = configFromEnv();
 
@@ -30,8 +32,9 @@ describe('configFromEnv', () => {
       region: 'CUSTOM_REGION',
       stage: 'prod',
       logLevel: 'DEBUG',
-      serviceName: 'items-service',
-      itemsTableName: 'ItemsTable',
+      serviceName: 'claims-service',
+      claimsTableName: 'ClaimsTable',
+      claimsByMemberAndDateIndex: 'ClaimsByMemberAndDateIndex',
     });
   });
 });

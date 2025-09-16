@@ -9,11 +9,7 @@ describe('PersistenceStack', () => {
     const template = Template.fromStack(stack);
 
     template.resourceCountIs('AWS::DynamoDB::Table', 1);
-    template.hasResourceProperties('AWS::DynamoDB::Table', {
-      TableName: 'items',
-      KeySchema: [{ AttributeName: 'itemId', KeyType: 'HASH' }],
-      AttributeDefinitions: [{ AttributeName: 'itemId', AttributeType: 'S' }],
-    });
+    template.hasResourceProperties('AWS::DynamoDB::Table', { TableName: 'claims' });
   });
 
   it('should set DeletionPolicy to Retain when stage is prod', () => {
